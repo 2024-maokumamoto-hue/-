@@ -24,19 +24,6 @@
             background: linear-gradient(135deg, #1a1c2c 0%, #4a1942 100%);
         }
 
-        .image-placeholder {
-            background: #2d2d2d;
-            border: 2px dashed #444;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            color: #888;
-            border-radius: 1.5rem;
-            min-height: 400px;
-            width: 100%;
-        }
-
         .floating {
             animation: float 6s ease-in-out infinite;
         }
@@ -45,6 +32,20 @@
             0% { transform: translateY(0px); }
             50% { transform: translateY(-20px); }
             100% { transform: translateY(0px); }
+        }
+
+        /* fallback style when image fails to load */
+        .img-fallback {
+            background: #2d2d2d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            min-height: 400px;
+            border-radius: 1.5rem;
+            color: #666;
+            padding: 2rem;
+            text-align: center;
         }
     </style>
 </head>
@@ -87,18 +88,25 @@
                 </div>
             </div>
             <div class="md:w-1/2 mt-16 md:mt-0 flex justify-center">
-                <!-- Image Insertion Point -->
-                <div class="image-placeholder shadow-2xl overflow-hidden relative group">
-                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all"></div>
-                    <i class="fas fa-image text-5xl mb-4 opacity-50"></i>
-                    <p class="text-lg font-medium">[ここにアップロードされた画像を挿入]</p>
-                    <p class="text-sm px-10 text-center mt-2">（落ち着いた個室、ブラウンのクッション、アメニティコーナー、ドリンクバーなどが映ったプレミアムな仮眠室のイメージ）</p>
+                <!-- Image Display Area -->
+                <div class="relative w-full max-w-xl shadow-2xl rounded-[1.5rem] overflow-hidden floating">
+                    <!-- 
+                        GitHub's raw URL example: 
+                        https://raw.githubusercontent.com/username/repo/branch/images/image_87ab7a.jpg
+                    -->
+                    <img src="images/image_87ab7a.jpg" 
+                         alt="Naps AI Premium Nap Room" 
+                         class="w-full h-auto object-cover"
+                         onerror="this.parentElement.innerHTML='<div class=\'img-fallback\'><i class=\'fas fa-folder-open text-4xl mb-4\'></i><p class=\'font-bold\'>imagesフォルダを確認してください</p><p class=\'text-sm mt-2\'>GitHubにimagesフォルダを作成し、その中に画像を入れた後、正しいURLに差し替えてください。</p></div>'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                        <p class="text-sm font-medium text-white/90">AIが管理する最適なリラクゼーション空間</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Experience Section (Matching the Image atmosphere) -->
+    <!-- Experience Section -->
     <section id="experience" class="py-24 px-6 bg-[#141621]">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row items-center gap-16">
@@ -129,18 +137,18 @@
                 <div class="md:w-1/2 order-1 md:order-2 space-y-6">
                     <h2 class="text-3xl md:text-4xl font-bold">五感を満たす、<br>最高峰の仮眠環境。</h2>
                     <p class="text-gray-400 leading-relaxed">
-                        画像のような洗練された個室空間で、AIがあなたの入眠をサポート。最適な温度、香り、音響、そして仮眠後のリフレッシュまで、すべてがパーソナライズされています。
+                        洗練された個室空間で、AIがあなたの入眠をサポート。最適な温度、香り、音響、そして仮眠後のリフレッシュまで、すべてがパーソナライズされています。
                     </p>
                     <div class="p-6 bg-indigo-900/20 rounded-2xl border border-indigo-500/30">
                         <p class="text-indigo-300 font-bold mb-2">AI提案の連動</p>
-                        <p class="text-sm">お部屋の照明やモニターが、あなたの疲労度（HI/MID/LOW）に合わせて自動的に暗転・調光されます。</p>
+                        <p class="text-sm">お部屋の照明やモニターが、あなたの疲労度に合わせて自動的に暗転・調光されます。</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section (Existing) -->
+    <!-- Features Section -->
     <section id="features" class="py-24 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
